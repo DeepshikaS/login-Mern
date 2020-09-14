@@ -1,19 +1,23 @@
-const nodemon = require("nodemon");
-const path = require("path");
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
-nodemon({
-  execMap: {
-    js: "node",
-  },
-  script: path.join(__dirname, "server/server"),
-  ignore: [],
-  watch: process.env.NODE_ENV !== "production" ? ["server/*"] : false,
-  ext: "js",
-})
-  .on("restart", function () {
-    console.log("Server restarted!");
+const app = express();
+
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
   })
-  .once("exit", function () {
-    console.log("Shutting down server");
-    process.exit();
-  });
+);
+
+app.use(bodyParser.json());
+
+const dbKeys = "mongodb://localhost/login";
+
+mongoose
+  .connect(dbKeys, { useNewUrlParser: true })
+  .then(() => console.log("mongodb connected successfully"))
+  .catch((err) => console.log(err));
+
+const port = 5000;
+app.listen(port, () => console.log("server is up and running"));
