@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 class Landing extends Component {
   render() {
     return (
-      <Router>
-        <div style={{ height: "75vh" }} className="container valign-wrapper">
-          <div className="row">
-            <div className="col s12 center-align">
-              <div className="col s6">
+      <div style={{ height: "75vh" }} className="container valign-wrapper">
+        <div className="row">
+          <div className="col s12 center-align">
+            <div className="col s6">
+              <Router>
                 <Link
                   to="/register"
                   style={{
@@ -20,8 +20,10 @@ class Landing extends Component {
                 >
                   Register
                 </Link>
-              </div>
-              <div className="col s6">
+              </Router>
+            </div>
+            <div className="col s6">
+              <Router>
                 <Link
                   to="/login"
                   style={{
@@ -33,11 +35,11 @@ class Landing extends Component {
                 >
                   Log In
                 </Link>
-              </div>
+              </Router>
             </div>
           </div>
         </div>
-      </Router>
+      </div>
     );
   }
 }
